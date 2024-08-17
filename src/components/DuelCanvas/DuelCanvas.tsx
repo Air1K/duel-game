@@ -96,7 +96,7 @@ const DuelCanvas: React.FC<DuelCanvasProps> = ({ hero1Speed, hero1FireRate, hero
         heroes.forEach(hero => {
             hero.y += hero.speed * hero.direction;
 
-            if (hero.y - hero.radius <= 0 || hero.y + hero.radius >= 300) {
+            if (hero.y - hero.radius < 0 || hero.y + hero.radius > 300) {
                 hero.direction *= -1;
             }
 
@@ -105,9 +105,9 @@ const DuelCanvas: React.FC<DuelCanvasProps> = ({ hero1Speed, hero1FireRate, hero
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < hero.radius) {
-                if (hero.y - 5 + hero.speed * hero.direction < hero.radius) {
+                if (hero.y - 20 + hero.speed * hero.direction < hero.radius) {
                     hero.y = hero.radius;
-                } else if (hero.y + 5 + hero.speed * hero.direction > 300 - hero.radius) {
+                } else if (hero.y + 20 + hero.speed * hero.direction > 300 - hero.radius) {
                     hero.y = 300 - hero.radius;
                 } else {
                     hero.direction = dy / Math.abs(dy);
